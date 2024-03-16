@@ -1,0 +1,53 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-image: url('WhatsApp Image 2024-03-04 at 10.50.57.jpeg'); /* Add your image path */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    /*height: 100%;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* This makes it a reference point for absolutely positioned child elements */
+    height: 100vh; /* Adjust based on your design */
+}
+
+.signup-form {
+    background: rgba(255, 255, 255, 0.8); /* Slight white transparent background */
+    padding: 10px;
+    border-radius: 10px;
+    width: 50%; /* You can adjust the width as needed */
+    max-width: 200px; /* Ensures the form doesn't get too wide on larger screens */
+    position: absolute;
+    top: 50%; /* Adjust the value to move it lower or higher */
+    left: 50%;
+    transform: translate(-50%, 170%); /* Centers the form */
+}
+
+.signup-form input[type="text"],
+.signup-form input[type="email"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.signup-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-form button:hover {
+    background-color: #0056b3;
+}
