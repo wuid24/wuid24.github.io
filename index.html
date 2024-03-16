@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Landing Page</title>
+    <link rel="stylesheet" href="scratch_1.css">
+</head>
+<body>
+    <div class="container">
+        <form id="submit-to-google-sheet" class="signup-form">
+            <input type="text" name="Name" placeholder="Your Name" required>
+            <input type="email" name="Email" placeholder="Your Email" required>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzqFUjMXGAZ_otiffU_vo2XR_xZhLa7a8E0u2axt8hy7WW6jsp5vXKm_cL2qftDP6JSyA/exec'; // Replace with your Google Apps Script URL
+        const form = document.forms['submit-to-google-sheet'];
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => response.json()) // Assuming your Google Script returns JSON
+                .then(response => {
+                    if(response.result == "success") {
+                        alert('Thank you for signing up!');
+                    } else {
+                        alert('There was a problem with your submission. Please try again.');
+                    }
+                })
+                .catch(error => console.error('Error!', error.message));
+        });
+    </script>
+</body>
+</html>
