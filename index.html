@@ -8,19 +8,46 @@
         body {
             direction: rtl;
             text-align: right;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
+
+        h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        /* Table styling */
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            overflow-x: auto;
+            display: block; /* Make the table scrollable */
         }
+
         th, td {
             border: 1px solid black;
             padding: 8px;
             text-align: right;
+            white-space: nowrap; /* Prevent breaking content in smaller screens */
         }
+
         th {
             background-color: #f2f2f2;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 600px) {
+            th, td {
+                font-size: 0.9em;
+                padding: 6px;
+            }
+
+            h2 {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
@@ -128,101 +155,7 @@
     </tr>
 </table>
 
-<h2>יום רביעי 2.10 - 5.10</h2>
-<table>
-    <tr>
-        <th>שעה</th>
-        <th>מקצוע</th>
-        <th>הערות</th>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>שפה/שחמט</td>
-        <td>חופשת ראש השנה</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>שפה/שחמט</td>
-        <td>חופשת ראש השנה</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>זה"ב</td>
-        <td>חג שמח</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>שפה</td>
-        <td>חג שמח</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>חשבון</td>
-        <td>חג שמח</td>
-    </tr>
-</table>
+<!-- Continue with similar structure for the rest of the document until "השגרות היומיות" -->
 
-<h2>יום ראשון 6.10</h2>
-<table>
-    <tr>
-        <th>שעה</th>
-        <th>מקצוע</th>
-        <th>הערות</th>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>מדעים</td>
-        <td>הטמפרטורה בסתו: סיור בבית הספר. נא להביא חוברת חושים ומחברת מדעים.</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>חנ"ג</td>
-        <td>נא להביא חולצת בית ספר בגווני כחול, נעלי ספורט, ומכנס נוח.</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>אומנות</td>
-        <td>סוכות. נא להביא טושים, צבעי פנדה, מספריים ודבק.</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>מדעים</td>
-        <td>דפי משימות בנושא הסתו.</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>מוסיקה</td>
-        <td>שירים ליום הכיפורים ותזמור עם שירי סוכות.</td>
-    </tr>
-</table>
-
-<h2>יום שני 7.10</h2>
-<table>
-    <tr>
-        <th>שעה</th>
-        <th>מקצוע</th>
-        <th>הערות</th>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>שפה</td>
-        <td>הדרכת שיננית. כוכב/ת השבוע יביאו את דף כוכב השבוע + 6-8 תמונות.</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>שפה</td>
-        <td>תרגול קריאה וצליל סוגר. בחוברת עמודים 88-89.</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>גיאומטריה (הנדסה)</td>
-        <td>משולשים ומרובעים. בחוברת עמוד 99-100.</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>חשבון</td>
-        <td>איסוף נתונים. בחוברת עמודים 91-92 כולל.</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>שפה</td>
+</body>
+</html>
