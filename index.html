@@ -1,37 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>אביב ואיליי יום הולדת</title>
-    <link rel="stylesheet" href="scratch_1.css">
+    <title>תכנון שבועי - חגי תשרי</title>
+    <style>
+        body {
+            direction: rtl;
+            text-align: right;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: right;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <form id="submit-to-google-sheet" class="signup-form">
-            <input type="text" name="שם הילד.ה" placeholder="שם הילד.ה" required>
-            <input type="text" name="counter" placeholder="כמה תגיעו ? (הורים וילדים)" required>
-            <button type="submit">הרשמה</button>
-        </form>
-    </div>
 
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzqFUjMXGAZ_otiffU_vo2XR_xZhLa7a8E0u2axt8hy7WW6jsp5vXKm_cL2qftDP6JSyA/exec'; // Replace with your Google Apps Script URL
-        const form = document.forms['submit-to-google-sheet'];
+<h2>יום ראשון 29.9</h2>
+<table>
+    <tr>
+        <th>שעה</th>
+        <th>מקצוע</th>
+        <th>הערות</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>מדעים</td>
+        <td>מאפייני הסתו. נא להביא חוברת עונות השנה + מחברת מדעים.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>חנ"ג</td>
+        <td>נא להביא חולצת בית ספר בגווני כחול + נעלי ספורט + מכנס נוח לספורט (לא ג'ינס).</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>אומנות</td>
+        <td>ראש השנה: נא להביא טושים, צבעי פנדה, בלוק ציור, מספריים ודבק.</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>מדעים</td>
+        <td>הדבורה – פעילות לראש השנה. נא להביא חוברת עונות השנה + מחברת מדעים.</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>מוסיקה</td>
+        <td>שירי ראש השנה, פעילות עם השיר "תפוח בדבש".</td>
+    </tr>
+</table>
 
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => response.json()) // Assuming your Google Script returns JSON
-                .then(response => {
-                    if(response.result == "success") {
-                        alert('Thank you for signing up!');
-                    } else {
-                        alert('There was a problem with your submission. Please try again.');
-                    }
-                })
-                .catch(error => console.error('Error!', error.message));
-        });
-    </script>
-</body>
-</html>
+<h2>יום שני 30.9</h2>
+<table>
+    <tr>
+        <th>שעה</th>
+        <th>מקצוע</th>
+        <th>הערות</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>שפה</td>
+        <td>תרגול קריאה והאות ד'. בחוברת עמודים 83-83 כולל. כוכב/ת השבוע יביאו את דף כוכב השבוע + 6-8 תמונות.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>שפה</td>
+        <td>מופע של בינ"ה לכבוד ראש השנה.</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>גיאומטריה (הנדסה)</td>
+        <td>משולשים ומרובעים. בחוברת עמוד 99-100. נא להביא חוברת חשבון ומחברת גיאומטריה.</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>חשבון</td>
+        <td>רצף מספרים. בחוברת עמודים 83-85 כולל.</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>שפה</td>
+        <td>האות ד'. בחוברת עמודים 86-87.</td>
+    </tr>
+</table>
+
+<h2>יום שלישי 1.10</h2>
+<table>
+    <tr>
+        <th>שעה</th>
+        <th>מקצוע</th>
+        <th>הערות</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>חשבון</td>
+        <td>פעילות לראש השנה. נא להביא תפוח חתוך ומעט דבש, דבק סטיק, טושים, מדבקות.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>חשבון</td>
+        <td>פעילות לראש השנה. נא להביא את אותם החומרים כמו בשעה הקודמת.</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>חשבון</td>
+        <td>רצף מספרים. בחוברת עמודים 86-89.</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>כישורי חיים</td>
+        <td>התחלות חדשות. נא להביא מחברת כישורי חיים.</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>שפה/חממה</td>
+        <td>ממלכת הצמחים – שיחים. נא להביא חוברת שפה ומחברת.</td>
+    </tr>
+</table>
+
+<h2>יום רביעי 2.10 - 5.10</h2>
+<table>
+    <tr>
+        <th>שעה</th>
+        <th>מקצוע</th>
+        <th>הערות</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>שפה/שחמט</td>
+        <td>חופשת ראש השנה</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>שפה/שחמט</td>
+        <td>חופשת ראש השנה</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>זה"ב</td>
+        <td>חג שמח</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>שפה</td>
+        <td>חג שמח</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>חשבון</td>
+        <td>חג שמח</td>
+    </tr>
+</table>
+
+<h2>יום ראשון 6.10</h2>
+<table>
+    <tr>
+        <th>שעה</th>
+        <th>מקצוע</th>
+        <th>הערות</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>מדעים</td>
+        <td>הטמפרטורה בסתו: סיור בבית הספר. נא להביא חוברת חושים ומחברת מדעים.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>חנ"ג</td>
+        <td>נא להביא חולצת בית ספר בגווני כחול, נעלי ספורט, ומכנס נוח.</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>אומנות</td>
+        <td>סוכות. נא להביא טושים, צבעי פנדה, מספריים ודבק.</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>מדעים</td>
+        <td>דפי משימות בנושא הסתו.</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>מוסיקה</td>
+        <td>שירים ליום הכיפורים ותזמור עם שירי סוכות.</td>
+    </tr>
+</table>
+
+<h2>יום שני 7.10</h2>
+<table>
+    <tr>
+        <th>שעה</th>
+        <th>מקצוע</th>
+        <th>הערות</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>שפה</td>
+        <td>הדרכת שיננית. כוכב/ת השבוע יביאו את דף כוכב השבוע + 6-8 תמונות.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>שפה</td>
+        <td>תרגול קריאה וצליל סוגר. בחוברת עמודים 88-89.</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>גיאומטריה (הנדסה)</td>
+        <td>משולשים ומרובעים. בחוברת עמוד 99-100.</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>חשבון</td>
+        <td>איסוף נתונים. בחוברת עמודים 91-92 כולל.</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>שפה</td>
