@@ -1,37 +1,262 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Landing Page</title>
-    <link rel="stylesheet" href="scratch_1.css">
+    <title>תכנון שבועי 27.10-1.11</title>
+    <style>
+        body {
+            direction: rtl;
+            text-align: right;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            display: block; /* Make the table scrollable */
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: right;
+            white-space: nowrap; /* Prevent breaking content in smaller screens */
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Highlight text that includes "נא להביא" */
+        .highlight {
+            background-color: yellow;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 600px) {
+            th, td {
+                font-size: 0.9em;
+                padding: 6px;
+            }
+
+            h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <form id="submit-to-google-sheet" class="signup-form">
-            <input type="text" name="Name" placeholder="Your Name" required>
-            <input type="email" name="Email" placeholder="Your Email" required>
-            <button type="submit">Sign Up</button>
-        </form>
-    </div>
 
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzqFUjMXGAZ_otiffU_vo2XR_xZhLa7a8E0u2axt8hy7WW6jsp5vXKm_cL2qftDP6JSyA/exec'; // Replace with your Google Apps Script URL
-        const form = document.forms['submit-to-google-sheet'];
+<h2>יום ראשון 27.10</h2>
+<table>
+    <tr>
+        <th>שעה</th>
+        <th>מקצוע</th>
+        <th>הערות</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>מדעים</td>
+        <td>הטמפרטורה בסתו. <span class="highlight">נא להביא</span> חוברת עונות השנה + מחברת מדעים.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>חנ"ג</td>
+        <td><span class="highlight">נא להביא</span> חולצת בית ספר בגווני כחול (הצבע החדש שנבחר לשיעורי ספורט) + נעלי ספורט + מכנס נוח לספורט (לא ג'ינס).</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>אומנות</td>
+        <td><span class="highlight">נא להביא</span>: צבעי פנדה וטושים.</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>מדעים</td>
+        <td>פעילות בנושא הרוח. <span class="highlight">נא להביא</span> חוברת עונות השנה + מחברת מדעים.</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>מוסיקה</td>
+        <td>סתיו: לימוד השיר – "עלי השלכת", פעילות בתנועה בנושא. ביסוס מקצבי בסיס – תרגול ותיגוף.</td>
+    </tr>
+</table>
 
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => response.json()) // Assuming your Google Script returns JSON
-                .then(response => {
-                    if(response.result == "success") {
-                        alert('Thank you for signing up!');
-                    } else {
-                        alert('There was a problem with your submission. Please try again.');
-                    }
-                })
-                .catch(error => console.error('Error!', error.message));
-        });
-    </script>
+<h2>יום שני 28.10</h2>
+<table>
+    <tr>
+        <th>שעה</th>
+        <th>מקצוע</th>
+        <th>הערות</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>שפה</td>
+        <td>זכר ונקבה. בחוברת עמודים 102-103 כולל. <span class="highlight">נא להביא</span> חוברת שפה ומחברת שפה.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>שפה</td>
+        <td>תשובות לשאלות. בחוברת עמוד 104. <span class="highlight">נא להביא</span> חוברת שפה ומחברת שפה.</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>גיאומטריה (הנדסה)</td>
+        <td>צלעות וקודקודים. בחוברת עמודים 117-119. <span class="highlight">נא להביא</span>: חוברת חשבון ומחברת גיאומטריה.</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>חשבון</td>
+        <td>הסימן שווה (=). בחוברת מספר 2 עמודים 6-9 כולל. <span class="highlight">נא להביא</span> חוברת 2 חשבון ומחברת חשבון.</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>שפה</td>
+        <td>צליל פותח וצליל סוגר ומשפט מלא. בחוברת עמודים 105-106. <span class="highlight">נא להביא</span> חוברת שפה ומחברת שפה.</td>
+    </tr>
+</table>
+
+<h2>יום שלישי 29.10</h2>
+<table>
+    <tr>
+        <th>שעה</th>
+        <th>מקצוע</th>
+        <th>הערות</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>חשבון</td>
+        <td>הסימן שווה (=) ומשימות תרגול. בחוברת מספר 2 עמודים 10-14 כולל. <span class="highlight">נא להביא</span> את חוברת 2 + מחברת חשבון.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>חשבון</td>
+        <td>מצבי חיבור. בחוברת עמודים 15-17 כולל. <span class="highlight">נא להביא</span> את חוברת 2 + מחברת חשבון.</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>חשבון</td>
+        <td>מצבי חיבור. בחוברת עמוד 18-19. <span class="highlight">נא להביא</span> את חוברת 2 + מחברת חשבון.</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>כישורי חיים</td>
+        <td>התחלות חדשות. <span class="highlight">נא להביא</span> מחברת כישורי חיים.</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>שפה/חממה</td>
+        <td>ממלכת הצמחים – עשבים. <span class="highlight">נא להביא</span>: לשפה חוברת + מחברת, לחממה קלסר חצי שקוף.</td>
+    </tr>
+</table>
+
+<h2>יום רביעי 30.10</h2>
+<table>
+    <tr>
+        <th>שעה</th>
+        <th>מקצוע</th>
+        <th>הערות</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>שפה/שחמט</td>
+        <td>מה התשובה והאות ן סופית – בחוברת עמודים 107-109. <span class="highlight">נא להביא</span> את חוברת שפה + מחברת שפה.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>שפה/שחמט</td>
+        <td>מה התשובה והאות ן סופית. בחוברת עמודים 107-109. <span class="highlight">נא להביא</span> את חוברת שפה + מחברת שפה.</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>זה"ב</td>
+        <td><span class="highlight">נא להביא</span> חוברת זה"ב.</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>שפה</td>
+        <td>האות נ'. בחוברת עמודים 110-112. <span class="highlight">נא להביא</span> את חוברת שפה + מחברת שפה.</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>חשבון</td>
+        <td>משימות תרגול ותרגילי חיבור. בחוברת עמודים 20-23. <span class="highlight">נא להביא</span> את חוברת + מחברת חשבון.</td>
+    </tr>
+</table>
+
+<h2>יום חמישי 31.10</h2>
+<table>
+    <tr>
+        <th>שעה</th>
+        <th>מקצוע</th>
+        <th>הערות</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>שפה</td>
+        <td>איתור מילים בטקסט. בחוברת עמודים 113-114. <span class="highlight">נא להביא</span> את חוברת שפה + מחברת שפה.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>שפה</td>
+        <td>כתיבת שאלות. בחוברת עמודים 115-116. <span class="highlight">נא להביא</span> את חוברת שפה + מחברת שפה.</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>חנ"ג</td>
+        <td><span class="highlight">נא להביא</span> חולצת בית ספר בגווני כחול (הצבע החדש שנבחר לשיעורי ספורט) + נעלי ספורט + מכנס נוח לספורט (לא ג'ינס).</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>חשבון</td>
+        <td>תרגילי חיבור. בחוברת עמודים 24-25. <span class="highlight">נא להביא</span> את חוברת + מחברת חשבון.</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>חשבון</td>
+        <td>תרגילי חיבור. בחוברת עמודים 26-27. <span class="highlight">נא להביא</span> את חוברת + מחברת חשבון.</td>
+    </tr>
+</table>
+
+<h2>יום שישי 1.11</h2>
+<table>
+    <tr>
+        <th>שעה</th>
+        <th>מקצוע</th>
+        <th>הערות</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>הקשבה מתבוננת</td>
+        <td>בימי שישי <span class="highlight">נא להגיע</span> עם חולצת בית ספר לבנה.</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>שפה/חשבון</td>
+        <td>משחקי שפה וחשבון.</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>הכל בספר</td>
+        <td>בשיעור זה הילדים יאזינו לסיפורים על פי בחירה אישית.</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>מפתח הלב/חברה</td>
+        <td>יום הולדת לכוכב השבוע אביב.</td>
+    </tr>
+</table>
+
+<!-- This marks the end before the "השגרות היומיות" section -->
 </body>
 </html>
