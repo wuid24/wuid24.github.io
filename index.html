@@ -1,251 +1,117 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>תכנון שבועי 21.9–17.10 — מותאם למובייל</title>
-<style>:root{--border:#d0d7de;--bg:#ffffff;--muted:#f6f8fa;--text:#0f172a;}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.6}
-body{direction:rtl;text-align:right}
-header{padding:14px 16px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,#fff,#fafbfc)}
-header h1{font-size:1.25rem;margin:0}
-.wrap{max-width:980px;margin:0 auto;padding:12px 16px}
-details{border:1px solid var(--border);border-radius:10px;background:#fff;margin:12px 0;overflow:hidden}
-summary{cursor:pointer;list-style:none;padding:12px 16px;font-weight:700;background:var(--muted);outline:none}
-summary::-webkit-details-marker{display:none}
-summary:focus{box-shadow:0 0 0 3px rgba(14,165,233,.35)}
-.tbl-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:520px}
-th,td{border:1px solid #999;padding:.55rem .6rem;text-align:right;white-space:nowrap}
-th{background:#f2f2f2;font-weight:700}
-.highlight-yellow{background:yellow}
-.highlight-red{background:#dc2626;color:#fff;padding:0 .25em;border-radius:.25rem}
-footer{border-top:1px solid var(--border);padding:16px;text-align:center;color:#475569;background:#fff}
-@media (max-width:600px){
-  header h1{font-size:1.05rem}
-  th,td{font-size:.9rem;padding:.45rem .5rem}
-  table{min-width:460px}
-}</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>תכנון שבועי</title>
+<style>
+  * { box-sizing: border-box; }
+  body { 
+    direction: rtl; 
+    font-family: "Arial", sans-serif; 
+    text-align: right;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f5f5f5;
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  table { 
+    border-collapse: collapse; 
+    width: 100%; 
+    margin-bottom: 20px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  th, td { 
+    border: 1px solid #ddd; 
+    padding: 12px; 
+    vertical-align: top;
+  }
+  th { 
+    background: #4CAF50; 
+    color: white;
+    font-weight: bold;
+  }
+  .yellow { 
+    background-color: #fff9c4; 
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+  .red { 
+    color: #d32f2f; 
+    font-weight: bold;
+  }
+  details { 
+    margin-bottom: 20px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  summary { 
+    font-size: 1.3em; 
+    font-weight: bold; 
+    background: #e3f2fd; 
+    padding: 15px; 
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s;
+  }
+  summary:hover {
+    background: #bbdefb;
+  }
+  details[open] summary {
+    background: #90caf9;
+    color: white;
+  }
+  .tbl-wrap {
+    padding: 15px;
+  }
+  .time-col { width: 80px; text-align: center; font-weight: bold; }
+  .subject-col { width: 150px; }
+  .notes-col { width: auto; }
+
+  @media (max-width: 768px) {
+    body { padding: 10px; }
+    table, th, td { font-size: 14px; padding: 8px; }
+    summary { font-size: 1.1em; padding: 12px; }
+    .time-col { width: 60px; }
+    .subject-col { width: 100px; }
+  }
+
+  @media print {
+    details { page-break-inside: avoid; }
+    details summary { display: none; }
+    details .tbl-wrap { display: block !important; }
+  }
+</style>
 </head>
 <body>
-<header><h1>תכנון שבועי 21.9–17.10 — מותאם למובייל</h1></header>
-<div class="wrap">
-<details open><summary>יום ראשון 21.9</summary>
-<div class="tbl-wrap"><table>
-<tr><th>שעה</th><th>מקצוע</th><th>הערות</th></tr>
-<tr><td>1</td><td>אנגלית</td><td>אוצר מילים והכרת
-האותיות.</td></tr>
-<tr><td>2</td><td>אומנות</td><td>סדנת כרטיסי ברכה. <span class="highlight-yellow">נא להביא</span>: מספריים, דבק וטושים/צבעי
-עיפרון.</td></tr>
-<tr><td>3</td><td>חנ"ג</td><td><span class="highlight-yellow">נא להביא</span> חולצת בית ספר בגווני כחול (הצבע החדש
-שנבחר לשיעורי ספורט) + נעלי ספורט + מכנס נוח לספורט (לא
-ג'ינס).</td></tr>
-<tr><td>4</td><td>מדעים</td><td>פעילות לראש השנה –
-הדבורה. <span class="highlight-yellow">נא להביא</span> חוברת סביבת חיים + מחברת
-מדעים.</td></tr>
-<tr><td>5</td><td>מדעים</td><td>המשך משיעור קודם. <span class="highlight-yellow">נא להביא</span> חוברת סביבת חיים + מחברת
-מדעים.</td></tr>
-</table></div></details>
-<details><summary>יום שני – רביעי
-22.9-24.9 – חופשה</summary>
-<div class="tbl-wrap"><table>
-<tr><th>שעה</th><th>מקצוע</th><th>הערות</th></tr>
-<tr><td>1</td><td>שפה</td><td>חופש ראש השנה</td></tr>
-<tr><td>2</td><td>שפה</td><td>חופש ראש השנה</td></tr>
-<tr><td>3</td><td>מולדת</td><td></td></tr>
-<tr><td>4</td><td>מוסיקה</td><td>חופש ראש השנה</td></tr>
-<tr><td>5</td><td>תורה</td><td>חופש ראש השנה</td></tr>
-</table></div></details>
-<details><summary>יום חמישי 25.9</summary>
-<div class="tbl-wrap"><table>
-<tr><th>שעה</th><th>מקצוע</th><th>הערות</th></tr>
-<tr><td>1</td><td>שפה</td><td>עבודה בקצב אישי בחוברת הבנתי את
-הקטע. <span class="highlight-yellow">נא להביא</span> את חוברת שפה + מחברת
-שפה.</td></tr>
-<tr><td>2</td><td>חנ"ג</td><td><span class="highlight-yellow">נא להביא</span> חולצת בית ספר בגווני כחול (הצבע החדש
-שנבחר לשיעורי ספורט) + נעלי ספורט + מכנס נוח לספורט (לא
-ג'ינס). <span class="highlight-yellow">נא להביא</span> את חוברת שפה + מחברת
-שפה.</td></tr>
-<tr><td>3</td><td>חשבון</td><td>האפס בתרגילי חיבור ובתרגילי
-חיסור. בחוברת עמודים 28-31. <span class="highlight-yellow">נא להביא</span> את חוברת + מחברת
-חשבון.</td></tr>
-<tr><td>4</td><td>שפה</td><td>עבודה בקצב אישי בחוברת הבנתי את
-הקטע. <span class="highlight-yellow">נא להביא</span> את חוברת שפה + מחברת
-שפה.</td></tr>
-<tr><td>5</td><td>גיאומטריה</td><td>הסנטימטר. בחוברת עמודים 166-169. <span class="highlight-yellow">נא להביא</span> את חוברת חשבון + מחברת
-גיאומטריה.</td></tr>
-</table></div></details>
-<details><summary>יום שישי 26.9</summary>
-<div class="tbl-wrap"><table>
-<tr><th>שעה</th><th>מקצוע</th><th>הערות</th></tr>
-<tr><td>1</td><td>הקשבה מתבוננת</td><td>בימי שישי נא להגיע עם חולצת בית ספר
-לבנה.</td></tr>
-<tr><td>2</td><td>תחנות בחשבון ושפה.</td><td></td></tr>
-<tr><td>3</td><td>חשבון</td><td>תחנות בחשבון ושפה.</td></tr>
-<tr><td>4</td><td>מפתח הלב/חברה</td><td>פעילות חווייתית.</td></tr>
-</table></div></details>
-<details><summary>יום ראשון 28.9</summary>
-<div class="tbl-wrap"><table>
-<tr><th>שעה</th><th>מקצוע</th><th>הערות</th></tr>
-<tr><td>1</td><td>אנגלית</td><td>אוצר מילים והכרת
-האותיות.</td></tr>
-<tr><td>2</td><td>אומנות</td><td>סוכות. <span class="highlight-yellow">נא להביא</span>: צבעי פנדה, טושים/צבעי עיפרון, דבק
-ומספריים.</td></tr>
-<tr><td>3</td><td>חנ"ג</td><td><span class="highlight-yellow">נא להביא</span> חולצת בית ספר בגווני כחול (הצבע החדש
-שנבחר לשיעורי ספורט) + נעלי ספורט + מכנס נוח לספורט (לא
-ג'ינס).</td></tr>
-<tr><td>4</td><td>מדעים</td><td>מופע לחגי תשרי "חגיגה לחגים" באולם
-הספורט. נא להגיע עם חולצה לבנה. <span class="highlight-yellow">נא להביא</span> חוברת סביבת חיים + מחברת
-מדעים.</td></tr>
-<tr><td>5</td><td>מדעים</td><td>עבודה בחוברת. <span class="highlight-yellow">נא להביא</span> חוברת סביבת חיים + מחברת
-מדעים.</td></tr>
-</table></div></details>
-<details><summary>יום שני 29.9</summary>
-<div class="tbl-wrap"><table>
-<tr><th>שעה</th><th>מקצוע</th><th>הערות</th></tr>
-<tr><td>1</td><td>שפה</td><td>עבודה בקצב אישי בחוברת הבנתי את
-הקטע. <span class="highlight-yellow">נא להביא</span> חוברת שפה ומחברת
-שפה.</td></tr>
-<tr><td>2</td><td>שפה</td><td>עבודה בקצב אישי בחוברת הבנתי את
-הקטע. <span class="highlight-yellow">נא להביא</span> חוברת שפה ומחברת
-שפה.</td></tr>
-<tr><td>3</td><td>מולדת</td><td>הבית שלי. בחוברת עמודים 13-16. <span class="highlight-yellow">נא להביא</span> חוברת מולדת + מחברת
-מולדת.</td></tr>
-<tr><td>4</td><td>מוסיקה</td><td>פעילות לקראת יום כיפור
-וסוכות.</td></tr>
-<tr><td>5</td><td>תורה</td><td>בריאת העולם. <span class="highlight-yellow">נא להביא</span> מחברת תורה.</td></tr>
-</table></div></details>
-<details><summary>יום שלישי 30.9</summary>
-<div class="tbl-wrap"><table>
-<tr><th>שעה</th><th>מקצוע</th><th>הערות</th></tr>
-<tr><td>1</td><td>הכל בספר</td><td>בשיעור זה המורה מקריאה ספר לילדים ובעקבות
-הקריאה מתנהל שיח על הספר. בסיום השיח יוצרים יצירה בנושא
-הספר.</td></tr>
-<tr><td>2</td><td>מולדת</td><td>הבית שלי. בחוברת עמודים 17-19. <span class="highlight-yellow">נא להביא</span> חוברת מולדת + מחברת
-מולדת.</td></tr>
-<tr><td>3</td><td>חשבון</td><td>מספרים זוגיים ומספרים
-אי-זוגיים.20. בחוברת עמודים 32-34. <span class="highlight-yellow">נא להביא</span> את חוברת + מחברת
-חשבון.</td></tr>
-<tr><td>4</td><td>חשבון</td><td>מספרים זוגיים ומספרים
-אי-זוגיים.20. בחוברת עמודים 35-37. <span class="highlight-yellow">נא להביא</span> את חוברת + מחברת
-חשבון.</td></tr>
-<tr><td>5</td><td>כישורי חיים</td><td>התפייסות.</td></tr>
-</table></div></details>
-<details><summary>יום רביעי – חמישי
-1.10-2.10 – חופשה</summary>
-<div class="tbl-wrap"><table>
-<tr><th>שעה</th><th>מקצוע</th><th>הערות</th></tr>
-<tr><td>1</td><td>חשבון</td><td>יום הכיפורים</td></tr>
-<tr><td>2</td><td>תורה</td><td>יום הכיפורים</td></tr>
-<tr><td>3</td><td>שפה</td><td></td></tr>
-<tr><td>4</td><td>שפה</td><td>יום הכיפורים</td></tr>
-<tr><td>5</td><td>מורשת</td><td>יום הכיפורים</td></tr>
-</table></div></details>
-<details><summary>יום שישי 3.10</summary>
-<div class="tbl-wrap"><table>
-<tr><th>שעה</th><th>מקצוע</th><th>הערות</th></tr>
-<tr><td>1</td><td>הקשבה מתבוננת</td><td>בימי שישי נא להגיע עם חולצת בית ספר
-לבנה.</td></tr>
-<tr><td>2</td><td>שפה</td><td>תחנות בחשבון ושפה.</td></tr>
-<tr><td>3</td><td>חשבון</td><td>תחנות בחשבון ושפה.</td></tr>
-<tr><td>4</td><td>מפתח הלב/חברה</td><td>פעילות חווייתית.</td></tr>
-</table></div></details>
-<details><summary>יום ראשון 5.10</summary>
-<div class="tbl-wrap"><table>
-<tr><th>שעה</th><th>מקצוע</th><th>הערות</th></tr>
-<tr><td>1</td><td>אנגלית</td><td>היכרות.</td></tr>
-<tr><td>2</td><td>אומנות</td><td>הקו באומנות. <span class="highlight-yellow">נא להביא</span>: סרגל
-וטושים.</td></tr>
-<tr><td>3</td><td>חנ"ג</td><td><span class="highlight-yellow">נא להביא</span> חולצת בית ספר בגווני כחול (הצבע החדש
-שנבחר לשיעורי ספורט) + נעלי ספורט + מכנס נוח לספורט (לא
-ג'ינס).</td></tr>
-<tr><td>4</td><td>מדעים</td><td>עבודה בחוברת. בחוברת עמודים <span class="highlight-yellow">נא להביא</span> חוברת סביבת חיים + מחברת
-מדעים.</td></tr>
-<tr><td>5</td><td>מדעים</td><td>עבודה בחוברת. <span class="highlight-yellow">נא להביא</span> חוברת סביבת חיים + מחברת
-מדעים.</td></tr>
-</table></div></details>
-<details><summary>יום שני – שלישי
-6.10-14.10 – חופשה</summary>
-<div class="tbl-wrap"><table>
-<tr><th>שעה</th><th>מקצוע</th><th>הערות</th></tr>
-<tr><td>1</td><td>שפה</td><td>חופשת סוכות</td></tr>
-<tr><td>2</td><td>שפה</td><td>חופשת סוכות</td></tr>
-<tr><td>3</td><td>מולדת</td><td></td></tr>
-<tr><td>4</td><td>מוסיקה</td><td>חופשת סוכות</td></tr>
-<tr><td>5</td><td>תורה</td><td>חופשת סוכות</td></tr>
-</table></div></details>
-<details><summary>יום רביעי 15.10</summary>
-<div class="tbl-wrap"><table>
-<tr><th>שעה</th><th>מקצוע</th><th>הערות</th></tr>
-<tr><td>1</td><td>חשבון</td><td>משימות תרגול. בחוברת עמודים 38-39. <span class="highlight-yellow">נא להביא</span> את חוברת + מחברת
-חשבון.</td></tr>
-<tr><td>2</td><td>תורה</td><td>בריאת העולם – ימות
-הבריאה. <span class="highlight-yellow">נא להביא</span> מחברת תורה.</td></tr>
-<tr><td>3</td><td>שפה</td><td>עבודה בקצב אישי בחוברת הבנתי את
-הקטע. <span class="highlight-yellow">נא להביא</span> חוברת שפה + מחברת
-שפה.</td></tr>
-<tr><td>4</td><td>שפה</td><td>עבודה בקצב אישי בחוברת הבנתי את
-הקטע. <span class="highlight-yellow">נא להביא</span> חוברת שפה + מחברת
-שפה.</td></tr>
-<tr><td>5</td><td>מורשת</td><td>סמלי משפחה וקהילה. <span class="highlight-yellow">נא להביא</span> מחברת
-מורשת.</td></tr>
-</table></div></details>
-<details><summary>יום חמישי 16.10</summary>
-<div class="tbl-wrap"><table>
-<tr><th>שעה</th><th>מקצוע</th><th>הערות</th></tr>
-<tr><td>1</td><td>שפה</td><td>עבודה בקצב אישי בחוברת הבנתי את
-הקטע. <span class="highlight-yellow">נא להביא</span> את חוברת שפה + מחברת
-שפה.</td></tr>
-<tr><td>2</td><td>חנ"ג</td><td><span class="highlight-yellow">נא להביא</span> חולצת בית ספר בגווני כחול (הצבע החדש
-שנבחר לשיעורי ספורט) + נעלי ספורט + מכנס נוח לספורט (לא
-ג'ינס). <span class="highlight-yellow">נא להביא</span> את חוברת שפה + מחברת
-שפה.</td></tr>
-<tr><td>3</td><td>חשבון</td><td>הקשר בין חיבור לחיסור. בחוברת עמודים 40-43. <span class="highlight-yellow">נא להביא</span> את חוברת + מחברת
-חשבון.</td></tr>
-<tr><td>4</td><td>שפה</td><td>עבודה בקצב אישי בחוברת הבנתי את
-הקטע. <span class="highlight-yellow">נא להביא</span> את חוברת שפה + מחברת
-שפה.</td></tr>
-<tr><td>5</td><td>גיאומטריה</td><td>משימות תרגול. בחוברת עמודים 170-171. <span class="highlight-yellow">נא להביא</span> את חוברת חשבון + מחברת
-גיאומטריה.</td></tr>
-</table></div></details>
-<details><summary>יום שישי 17.10</summary>
-<div class="tbl-wrap"><table>
-<tr><th>שעה</th><th>מקצוע</th><th>הערות</th></tr>
-<tr><td>1</td><td>הקשבה מתבוננת</td><td>בימי שישי נא להגיע עם חולצת בית ספר
-לבנה.</td></tr>
-<tr><td>2</td><td>שפה</td><td>תחנות בחשבון ושפה.</td></tr>
-<tr><td>3</td><td>חשבון</td><td>תחנות בחשבון ושפה.</td></tr>
-<tr><td>4</td><td>מפתח הלב/חברה</td><td>פעילות חווייתית.</td></tr>
-</table></div></details>
-<h2>שגרת יום</h2>
-<div class="tbl-wrap"><table>
-<tr><th></th>
-<th>יום ראשון</th>
-<th>יום שני</th>
-<th>יום שלישי</th>
-<th>יום רביעי</th>
-<th>יום חמישי</th>
-<th>יום שישי</th>
-</tr>
-<tr>
-<td>שגרת בוקר 7:45 עד 8:20</td>
-<td>משחק חופשי שיר של יום</td>
-<td>משחק חופשי מחנכת משחקת/בהקשבה עם קבוצת / ילדים</td>
-<td>משחק חופשי שיח פרטני/קבוצתי עם / המחנכת</td>
-<td>משחק חופשי שיר של יום</td>
-<td>משחק חופשי מחנכת משחקת/בהקשבה עם קבוצת / ילדים</td>
-<td>משחק חופשי שיר של יום</td>
-</tr>
-<tr>
-<td>שגרת צהריים 12:35 עד 12:50</td>
-<td>שיר של יום</td>
-<td>שיח מה היה לנו היום?</td>
-<td>משחק כיתתי בחצר</td>
-<td>שיר של יום</td>
-<td>ריקוד</td>
-<td></td>
-</tr>
-</table></div>
-</div>
-<footer>© תכנון שבועי — מותאם למובייל</footer>
-</body></html>
+<h1>📚 תכנון שבועי</h1>
+<details><summary>📅 יום ראשון 19.10</summary><div class="tbl-wrap"><table><tr><th class="time-col">שעה</th><th class="subject-col">מקצוע</th><th class="notes-col">הערות</th></tr><tr><td class="time-col">1</td><td class="subject-col">אנגלית</td><td class="notes-col">היכרות.<br><span class="yellow">נא להביא</span> חוברת אנגלית ומחברת אנגלית.</td></tr><tr><td class="time-col">2</td><td class="subject-col">אומנות</td><td class="notes-col">הקו באומנות.<br><span class="yellow">נא להביא</span>: סרגל וטושים.</td></tr><tr><td class="time-col">3</td><td class="subject-col">חנ"ג</td><td class="notes-col"><span class="yellow">נא להביא</span> חולצת בית ספר בגווני כחול (הצבע החדש שנבחר לשיעורי ספורט) + נעלי ספורט + מכנס נוח לספורט (לא ג'ינס).</td></tr><tr><td class="time-col">4</td><td class="subject-col">מדעים</td><td class="notes-col"><span class="yellow">נא להביא</span> חוברת סביבת חיים + מחברת מדעים.</td></tr><tr><td class="time-col">5</td><td class="subject-col">מדעים</td><td class="notes-col"><span class="yellow">נא להביא</span> חוברת סביבת חיים + מחברת מדעים.</td></tr></table></div></details><details><summary>📅 יום שני 20.10</summary><div class="tbl-wrap"><table><tr><th class="time-col">שעה</th><th class="subject-col">מקצוע</th><th class="notes-col">הערות</th></tr><tr><td class="time-col">1</td><td class="subject-col">שפה</td><td class="notes-col">"שלום קטן"/לאה נאור<br>בחוברת " צועדים בדרך המילים" עמודים 41-42<br><span class="yellow">נא להביא</span> חוברת שפה ומחברת שפה.</td></tr><tr><td class="time-col">2</td><td class="subject-col">שפה</td><td class="notes-col">עבודה במחברת שפה.<br><span class="yellow">נא להביא</span> חוברת שפה ומחברת שפה.</td></tr><tr><td class="time-col">3</td><td class="subject-col">מולדת</td><td class="notes-col">הבית שלי<br>בחוברת עמודים 20-21<br><span class="yellow">נא להביא</span> חוברת מולדת + מחברת מולדת.</td></tr><tr><td class="time-col">4</td><td class="subject-col">מוסיקה</td><td class="notes-col">סתו – השיר: "אילו ציפורים"/נעמי שמר, נושא: נקודת מנוחה במוסיקה.</td></tr><tr><td class="time-col">5</td><td class="subject-col">תורה</td><td class="notes-col">היכרות עם התנ"ך.<br><span class="yellow">נא להביא</span> מחברת תורה.</td></tr></table></div></details><details><summary>📅 יום שלישי 21.10</summary><div class="tbl-wrap"><table><tr><th class="time-col">שעה</th><th class="subject-col">מקצוע</th><th class="notes-col">הערות</th></tr><tr><td class="time-col">1</td><td class="subject-col">הכל בספר</td><td class="notes-col">בשיעור זה המורה מקריאה ספר לילדים ובעקבות הקריאה מתנהל שיח על הספר. בסיום השיח יוצרים יצירה בנושא הספר.</td></tr><tr><td class="time-col">2</td><td class="subject-col">מולדת</td><td class="notes-col">החדר שלי<br>בחוברת עמודים 22-23.<br><span class="yellow">נא להביא</span> חוברת מולדת + מחברת מולדת.</td></tr><tr><td class="time-col">3</td><td class="subject-col">חשבון</td><td class="notes-col">הקשר בין חיבור לחיסור<br>בחוברת עמודים 40-42<br><span class="yellow">נא להביא</span> את חוברת + מחברת חשבון.</td></tr><tr><td class="time-col">4</td><td class="subject-col">חשבון</td><td class="notes-col">הקשר בין חיבור לחיסור<br>בחוברת עמודים 43-44<br><span class="yellow">נא להביא</span> את חוברת + מחברת חשבון.</td></tr><tr><td class="time-col">5</td><td class="subject-col">כישורי חיים</td><td class="notes-col">חברות.</td></tr></table></div></details><details><summary>📅 יום רביעי 22.10</summary><div class="tbl-wrap"><table><tr><th class="time-col">שעה</th><th class="subject-col">מקצוע</th><th class="notes-col">הערות</th></tr><tr><td class="time-col">1</td><td class="subject-col">חשבון</td><td class="notes-col">הקשר בין חיבור לחיסור<br>בחוברת עמוד 45<br><span class="yellow">נא להביא</span> את חוברת + מחברת חשבון.</td></tr><tr><td class="time-col">2</td><td class="subject-col">תורה</td><td class="notes-col">היכרות עם התנ"ך.<br><span class="yellow">נא להביא</span> מחברת תורה.</td></tr><tr><td class="time-col">3</td><td class="subject-col">שפה</td><td class="notes-col">הקרנה מיוחדת בזום לשכבת כיתת ב' לקראת לימוד ספר בראשית (הילדים יצפו בהקרנה בכיתה).<br><span class="yellow">נא להביא</span> חוברת שפה + מחברת שפה.</td></tr><tr><td class="time-col">4</td><td class="subject-col">שפה</td><td class="notes-col">דפי עבודה בנושא המילון.<br><span class="yellow">נא להביא</span> חוברת שפה + מחברת שפה.</td></tr><tr><td class="time-col">5</td><td class="subject-col">מורשת</td><td class="notes-col">סמלי משפחה וקהילה.<br><span class="yellow">נא להביא</span> מחברת מורשת.</td></tr></table></div></details><details><summary>📅 יום חמישי 23.10</summary><div class="tbl-wrap"><table><tr><th class="time-col">שעה</th><th class="subject-col">מקצוע</th><th class="notes-col">הערות</th></tr><tr><td class="time-col">1</td><td class="subject-col">שפה</td><td class="notes-col">"דני גיבור"/מרים ילן שטקליס<br>בחוברת "צועדים בדרך המילים" עמודים 43-44<br><span class="yellow">נא להביא</span> את חוברת שפה + מחברת שפה.</td></tr><tr><td class="time-col">2</td><td class="subject-col">חנ"ג</td><td class="notes-col"><span class="yellow">נא להביא</span> חולצת בית ספר בגווני כחול (הצבע החדש שנבחר לשיעורי ספורט) + נעלי ספורט + מכנס נוח לספורט (לא ג'ינס).<br><span class="yellow">נא להביא</span> את חוברת שפה + מחברת שפה.</td></tr><tr><td class="time-col">3</td><td class="subject-col">חשבון</td><td class="notes-col">הקשר בין חיבור לחיסור<br>בחוברת עמודים 47-48.<br><span class="yellow">נא להביא</span> את חוברת + מחברת חשבון.</td></tr><tr><td class="time-col">4</td><td class="subject-col">שפה</td><td class="notes-col">עבודה במחברת שפה.<br><span class="yellow">נא להביא</span> את חוברת שפה + מחברת שפה.</td></tr><tr><td class="time-col">5</td><td class="subject-col">גיאומטריה</td><td class="notes-col">המטר<br>בחוברת עמודים 172-174.<br><span class="yellow">נא להביא</span> את חוברת חשבון + מחברת גיאומטריה וסרגל.</td></tr></table></div></details><details><summary>📅 יום שישי 24.10</summary><div class="tbl-wrap"><table><tr><th class="time-col">שעה</th><th class="subject-col">מקצוע</th><th class="notes-col">הערות</th></tr><tr><td class="time-col">1</td><td class="subject-col">הקשבה מתבוננת</td><td class="notes-col">בימי שישי נא להגיע עם חולצת בית ספר לבנה.</td></tr><tr><td class="time-col">2</td><td class="subject-col">שפה</td><td class="notes-col">תחנות בחשבון ושפה.</td></tr><tr><td class="time-col">3</td><td class="subject-col">חשבון</td><td class="notes-col">תחנות בחשבון ושפה.</td></tr><tr><td class="time-col">4</td><td class="subject-col">מפתח הלב/חברה</td><td class="notes-col">פעילות חווייתית.</td></tr></table></div></details><h2>🔄 שגרת יום</h2><table><tr><th>יום</th><th>שגרת בוקר</th><th>שגרת צהריים</th></tr><tr><td>שגרת בוקר
+7:45-8:20</td><td>משחק חופשי
++
+שיר של יום</td><td>משחק חופשי
++
+מחנכת משחקת/בהקשבה עם קבוצת ילדים</td></tr><tr><td>שגרת צהריים
+12:35-12:50</td><td>שיר של יום</td><td>שיח מה היה לנו היום?</td></tr></table>
+<script>
+// פתיחת היום הנוכחי אוטומטית
+document.addEventListener('DOMContentLoaded', () => {
+  const days = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
+  const today = days[new Date().getDay()];
+
+  document.querySelectorAll('summary').forEach(summary => {
+    if (summary.textContent.includes(today)) {
+      summary.parentElement.open = true;
+    }
+  });
+});
+</script>
+</body>
+</html>
