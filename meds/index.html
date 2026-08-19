@@ -82,26 +82,38 @@
   .card-head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
   .med-name { font-size: 1.12rem; font-weight: 700; margin: 0; }
   .med-dose { color: var(--text-muted); font-size: .87rem; }
+  .med-when {
+    font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+    background: var(--surface-2); color: var(--text-muted);
+    padding: 2px 8px; border-radius: 20px;
+  }
   .status { margin: 10px 0 14px; font-size: .95rem; }
   .status .big { font-weight: 600; }
   .status .never { color: var(--text-muted); font-style: italic; }
   .meta { color: var(--text-muted); font-size: .82rem; margin-top: 2px; }
+  .meta .full { color: var(--warn-text); font-weight: 700; }
 
-  .interval-note {
-    margin: 10px 0 0; padding: 8px 11px; border-radius: 9px;
+  .note-list { margin: 10px 0 0; padding: 0; list-style: none; }
+  .note-list li {
+    padding: 8px 11px; border-radius: 9px; margin-top: 6px;
     background: var(--warn-bg); color: var(--warn-text);
     border: 1px solid var(--warn-border); font-size: .83rem;
   }
 
-  .actions { display: flex; gap: 8px; align-items: center; }
+  .actions { display: flex; gap: 8px; align-items: stretch; }
   button.take {
-    flex: 1; background: var(--accent); color: var(--accent-text);
-    border: 0; border-radius: 11px; padding: 14px 16px;
+    flex: 1 1 auto; background: var(--accent); color: var(--accent-text);
+    border: 1px solid var(--accent); border-radius: 11px; padding: 14px 12px;
     font: inherit; font-weight: 700; font-size: 1rem; cursor: pointer;
     min-height: 50px;
   }
   button.take:active { transform: translateY(1px); }
+  button.take.double {
+    flex: 0 0 auto; min-width: 62px; padding: 14px 10px;
+    background: var(--surface-2); color: var(--text); border-color: var(--border);
+  }
   button.ghost {
+    flex: 0 0 auto;
     background: transparent; color: var(--text-muted);
     border: 1px solid var(--border); border-radius: 11px;
     padding: 12px 13px; font: inherit; font-size: .86rem;
@@ -126,6 +138,10 @@
   .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; background: var(--accent); }
   .entry-time { font-variant-numeric: tabular-nums; font-weight: 600; min-width: 58px; }
   .entry-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .entry-x2 {
+    font-size: .72rem; font-weight: 700; background: var(--surface-2);
+    border: 1px solid var(--border); border-radius: 5px; padding: 1px 5px; margin-left: 5px;
+  }
   .entry-note { color: var(--text-muted); font-size: .82rem; }
   button.del {
     background: transparent; border: 0; color: var(--text-muted);
@@ -147,6 +163,13 @@
     background: var(--bg); color: var(--text);
     border: 1px solid var(--border); border-radius: 9px;
   }
+  label.check {
+    display: flex; align-items: center; gap: 8px; margin: 12px 0 2px;
+    font-size: .87rem; color: var(--text); font-weight: 500; cursor: pointer;
+  }
+  label.check input { width: 18px; height: 18px; margin: 0; flex: none; accent-color: var(--accent); }
+  /* `display: flex` above would otherwise beat the UA's [hidden] rule. */
+  label.check[hidden] { display: none; }
   .row { display: flex; gap: 10px; }
   .row > * { flex: 1; min-width: 0; }
   .btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
@@ -241,6 +264,10 @@
     <p class="hint" style="margin-top:0">Use this if you took it earlier and forgot to log it.</p>
     <label for="manual-when">Date &amp; time</label>
     <input type="datetime-local" id="manual-when" required>
+    <label class="check" id="manual-double-wrap" hidden>
+      <input type="checkbox" id="manual-double">
+      <span id="manual-double-label">Double dose</span>
+    </label>
     <label for="manual-note">Note (optional)</label>
     <input type="text" id="manual-note" placeholder="e.g. with food" maxlength="120">
     <div class="btn-row">
@@ -273,17 +300,24 @@
 
   if (!storageOK) document.getElementById("storage-warning").hidden = false;
 
+  // The regimen this install starts with. Every field is editable in Settings.
   function defaultState() {
     return {
-      version: 1,
+      version: 2,
       meds: [
-        { id: uid(), name: "Medication 1", dose: "", minIntervalHours: null, color: PALETTE[0] },
-        { id: uid(), name: "Medication 2", dose: "", minIntervalHours: null, color: PALETTE[1] },
-        { id: uid(), name: "Medication 3", dose: "", minIntervalHours: null, color: PALETTE[2] }
+        { id: uid(), name: "Optalgin", dose: "40 drops", schedule: "",
+          minIntervalHours: 6, maxPerDay: 3, allowDouble: false, color: PALETTE[0] },
+        { id: uid(), name: "Rokacet", dose: "1 tablet", schedule: "",
+          minIntervalHours: null, maxPerDay: 3, allowDouble: true, color: PALETTE[1] },
+        { id: uid(), name: "Taragin", dose: "20 mg", schedule: "Before sleep",
+          minIntervalHours: null, maxPerDay: 1, allowDouble: false, color: PALETTE[2] }
       ],
       log: []
     };
   }
+
+  function posNum(v) { return Number.isFinite(v) && v > 0 ? v : null; }
+  function posInt(v) { return Number.isFinite(v) && v > 0 ? Math.floor(v) : null; }
 
   function load() {
     if (!storageOK) return defaultState();
@@ -292,20 +326,30 @@
       if (!raw) return defaultState();
       var parsed = JSON.parse(raw);
       if (!parsed || !Array.isArray(parsed.meds) || !Array.isArray(parsed.log)) return defaultState();
-      // Normalise anything hand-edited or written by an older build.
+      // Normalise anything hand-edited, or written by an earlier build that
+      // had no maxPerDay / allowDouble / schedule fields.
       parsed.meds = parsed.meds.map(function (m, i) {
         return {
           id: m.id || uid(),
           name: typeof m.name === "string" && m.name.trim() ? m.name : "Medication " + (i + 1),
           dose: typeof m.dose === "string" ? m.dose : "",
-          minIntervalHours: Number.isFinite(m.minIntervalHours) && m.minIntervalHours > 0 ? m.minIntervalHours : null,
+          schedule: typeof m.schedule === "string" ? m.schedule : "",
+          minIntervalHours: posNum(m.minIntervalHours),
+          maxPerDay: posInt(m.maxPerDay),
+          allowDouble: m.allowDouble === true,
           color: m.color || PALETTE[i % PALETTE.length]
         };
       });
       parsed.log = parsed.log
         .filter(function (e) { return e && Number.isFinite(e.ts); })
         .map(function (e) {
-          return { id: e.id || uid(), medId: e.medId, ts: e.ts, note: typeof e.note === "string" ? e.note : "" };
+          return {
+            id: e.id || uid(),
+            medId: e.medId,
+            ts: e.ts,
+            units: e.units === 2 ? 2 : 1,
+            note: typeof e.note === "string" ? e.note : ""
+          };
         });
       return parsed;
     } catch (e) {
@@ -327,7 +371,17 @@
     return "id-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10);
   }
 
+  // An install left on the old untouched placeholders (nothing renamed, nothing
+  // logged) is upgraded to the real regimen. Anything customised is left alone.
+  function isUntouchedPlaceholders(s) {
+    return s.log.length === 0 && s.meds.length === 3 && s.meds.every(function (m, i) {
+      return m.name === "Medication " + (i + 1) && !m.dose && !m.schedule &&
+             m.minIntervalHours == null && m.maxPerDay == null && !m.allowDouble;
+    });
+  }
+
   var state = load();
+  if (isUntouchedPlaceholders(state)) state = defaultState();
 
   // Write the seeded defaults straight away, so a fresh install has stable
   // medication ids on disk even if the page is closed without logging anything.
@@ -386,19 +440,67 @@
                     .sort(function (a, b) { return b.ts - a.ts; });
   }
 
-  function lastEntry(medId) {
-    return entriesFor(medId)[0] || null;
+  function lastEntry(medId) { return entriesFor(medId)[0] || null; }
+
+  // Nearest dose at or before a given moment — so back-dated entries are
+  // spacing-checked against the dose that actually preceded them.
+  function doseBefore(medId, ts) {
+    var list = entriesFor(medId).filter(function (e) { return e.ts <= ts; });
+    return list[0] || null;
   }
 
-  function countToday(medId) {
-    var today = dayKey(Date.now());
-    return state.log.filter(function (e) { return e.medId === medId && dayKey(e.ts) === today; }).length;
+  // The daily limit counts doses, not button presses: a ×2 take is two doses.
+  function dosesOn(medId, key) {
+    return state.log.reduce(function (sum, e) {
+      if (e.medId !== medId || dayKey(e.ts) !== key) return sum;
+      return sum + (e.units === 2 ? 2 : 1);
+    }, 0);
+  }
+
+  function dosesToday(medId) { return dosesOn(medId, dayKey(Date.now())); }
+
+  /* ---------- the checks before a dose is logged ---------- *
+   * Every figure here is one the user entered from their own prescription.
+   * These only ever produce a confirm — nothing is refused or blocked.       */
+
+  function logWarnings(med, whenTs, units) {
+    var out = [];
+    var prev = doseBefore(med.id, whenTs);
+    units = units === 2 ? 2 : 1;
+
+    if (prev) {
+      if (med.minIntervalHours) {
+        var nextAt = prev.ts + med.minIntervalHours * 3600000;
+        if (whenTs < nextAt) {
+          out.push("Your " + med.minIntervalHours + "h spacing is not up until " +
+                   fmtTime(nextAt) + " — " + durationText(nextAt - whenTs) + " from then.");
+        }
+      } else if (whenTs - prev.ts < 2 * 60000) {
+        // No spacing rule set, so still guard against a fumbled double-tap.
+        out.push(med.name + " was already logged " + timeAgo(prev.ts, whenTs) + ".");
+      }
+    }
+
+    if (med.maxPerDay) {
+      var n = dosesOn(med.id, dayKey(whenTs));
+      if (n + units > med.maxPerDay) {
+        out.push("That would put you at " + (n + units) + " for the day, and you set a " +
+                 "limit of " + med.maxPerDay + ".");
+      }
+    }
+    return out;
+  }
+
+  function confirmLog(med, whenTs, units) {
+    var warnings = logWarnings(med, whenTs, units);
+    if (!warnings.length) return true;
+    return window.confirm(warnings.join("\n\n") + "\n\nLog it anyway?");
   }
 
   /* ---------- actions ---------- */
 
-  function addEntry(medId, ts, note) {
-    var entry = { id: uid(), medId: medId, ts: ts, note: note || "" };
+  function addEntry(medId, ts, units, note) {
+    var entry = { id: uid(), medId: medId, ts: ts, units: units === 2 ? 2 : 1, note: note || "" };
     state.log.push(entry);
     save();
     render();
@@ -415,23 +517,20 @@
     return removed;
   }
 
-  function logNow(medId) {
+  function announce(med, entry) {
+    showToast(med.name + (entry.units === 2 ? " ×2" : "") + " logged at " + fmtTime(entry.ts),
+      "Undo", function () {
+        removeEntry(entry.id);
+        showToast("Entry removed", null, null);
+      });
+  }
+
+  function logNow(medId, units) {
     var med = medById(medId);
     if (!med) return;
-    var prev = lastEntry(medId);
-    // Guard against a double-tap registering as two separate doses.
-    if (prev && Date.now() - prev.ts < 2 * 60000) {
-      var ok = window.confirm(
-        med.name + " was already logged " + timeAgo(prev.ts, Date.now()) +
-        ".\n\nLog another dose anyway?"
-      );
-      if (!ok) return;
-    }
-    var entry = addEntry(medId, Date.now(), "");
-    showToast(med.name + " logged at " + fmtTime(entry.ts), "Undo", function () {
-      removeEntry(entry.id);
-      showToast("Entry removed", null, null);
-    });
+    var now = Date.now();
+    if (!confirmLog(med, now, units)) return;
+    announce(med, addEntry(medId, now, units, ""));
   }
 
   /* ---------- toast ---------- */
@@ -471,6 +570,9 @@
   var manualWhen = document.getElementById("manual-when");
   var manualNote = document.getElementById("manual-note");
   var manualTitle = document.getElementById("manual-title");
+  var manualDouble = document.getElementById("manual-double");
+  var manualDoubleWrap = document.getElementById("manual-double-wrap");
+  var manualDoubleLabel = document.getElementById("manual-double-label");
   var manualTargetId = null;
 
   function openManual(medId) {
@@ -480,21 +582,27 @@
     manualTitle.textContent = "Log " + med.name;
     manualWhen.value = toLocalInputValue(new Date());
     manualNote.value = "";
+    manualDouble.checked = false;
+    manualDoubleWrap.hidden = !med.allowDouble;
+    manualDoubleLabel.textContent = med.dose ? "Double dose (" + med.dose + " × 2)" : "Double dose";
     if (typeof manualDialog.showModal === "function") manualDialog.showModal();
     else manualDialog.setAttribute("open", "");
   }
 
   manualDialog.addEventListener("close", function () {
-    if (manualDialog.returnValue !== "save" || !manualTargetId) { manualTargetId = null; return; }
-    var when = manualWhen.value ? new Date(manualWhen.value) : null;
-    if (!when || isNaN(when.getTime())) { manualTargetId = null; return; }
-    var med = medById(manualTargetId);
-    var entry = addEntry(manualTargetId, when.getTime(), manualNote.value.trim());
+    var medId = manualTargetId;
     manualTargetId = null;
-    showToast((med ? med.name : "Dose") + " logged for " + fmtTime(entry.ts), "Undo", function () {
-      removeEntry(entry.id);
-      showToast("Entry removed", null, null);
-    });
+    if (manualDialog.returnValue !== "save" || !medId) return;
+
+    var when = manualWhen.value ? new Date(manualWhen.value) : null;
+    if (!when || isNaN(when.getTime())) return;
+
+    var med = medById(medId);
+    if (!med) return;
+
+    var units = med.allowDouble && manualDouble.checked ? 2 : 1;
+    if (!confirmLog(med, when.getTime(), units)) return;
+    announce(med, addEntry(medId, when.getTime(), units, manualNote.value.trim()));
   });
 
   /* ---------- views ---------- */
@@ -503,35 +611,63 @@
     var now = Date.now();
     var html = state.meds.map(function (med) {
       var last = lastEntry(med.id);
-      var today = countToday(med.id);
+      var today = dosesToday(med.id);
+
+      var countText = med.maxPerDay
+        ? today + " of " + med.maxPerDay + " today"
+        : today + (today === 1 ? " dose" : " doses") + " today";
+      if (med.maxPerDay && today >= med.maxPerDay) {
+        countText = '<span class="full">' + esc(countText) + '</span>';
+      } else {
+        countText = esc(countText);
+      }
 
       var status = last
-        ? '<div class="big">Last taken ' + esc(timeAgo(last.ts, now)) + '</div>' +
+        ? '<div class="big">Last taken ' + esc(timeAgo(last.ts, now)) +
+            (last.units === 2 ? ' <span class="entry-x2">×2</span>' : '') + '</div>' +
           '<div class="meta">' + esc(fmtDayLong(last.ts)) + ' at ' + esc(fmtTime(last.ts)) +
-          ' &middot; ' + today + (today === 1 ? " dose" : " doses") + ' today</div>'
-        : '<div class="never">No doses logged yet</div>';
+          ' &middot; ' + countText + '</div>'
+        : '<div class="never">No doses logged yet</div>' +
+          (med.maxPerDay ? '<div class="meta">' + countText + '</div>' : '');
 
-      var note = "";
+      // Standing notes on the card: the same figures the confirm would raise,
+      // shown before the button is pressed rather than after.
+      var notes = [];
       if (med.minIntervalHours && last) {
         var nextAt = last.ts + med.minIntervalHours * 3600000;
-        note = now < nextAt
-          ? '<p class="interval-note">Your ' + esc(med.minIntervalHours) + 'h spacing: next dose at ' +
-            esc(fmtTime(nextAt)) + ' (in ' + esc(durationText(nextAt - now)) + ')</p>'
-          : '';
+        if (now < nextAt) {
+          notes.push("Your " + med.minIntervalHours + "h spacing: next dose at " +
+                     fmtTime(nextAt) + " (in " + durationText(nextAt - now) + ")");
+        }
       }
+      if (med.maxPerDay && today >= med.maxPerDay) {
+        notes.push(today > med.maxPerDay
+          ? today + " logged today, past the " + med.maxPerDay + " a day you set."
+          : "That is the full " + med.maxPerDay + " for today.");
+      }
+      var noteHtml = notes.length
+        ? '<ul class="note-list">' + notes.map(function (n) {
+            return '<li>' + esc(n) + '</li>';
+          }).join("") + '</ul>'
+        : '';
 
       return '' +
         '<article class="card" style="--med-color:' + esc(med.color) + '">' +
           '<div class="card-head">' +
             '<h2 class="med-name">' + esc(med.name) + '</h2>' +
             (med.dose ? '<span class="med-dose">' + esc(med.dose) + '</span>' : '') +
+            (med.schedule ? '<span class="med-when">' + esc(med.schedule) + '</span>' : '') +
           '</div>' +
           '<div class="status">' + status + '</div>' +
           '<div class="actions">' +
             '<button type="button" class="take" data-action="take" data-med="' + esc(med.id) + '">Take now</button>' +
+            (med.allowDouble
+              ? '<button type="button" class="take double" data-action="take-double" ' +
+                'data-med="' + esc(med.id) + '" title="Log a double dose">×2</button>'
+              : '') +
             '<button type="button" class="ghost" data-action="manual" data-med="' + esc(med.id) + '">Other time</button>' +
           '</div>' +
-          note +
+          noteHtml +
         '</article>';
     }).join("");
 
@@ -570,6 +706,7 @@
             '<span class="dot" style="background:' + esc(med ? med.color : "#888") + '"></span>' +
             '<span class="entry-time">' + esc(fmtTime(e.ts)) + '</span>' +
             '<span class="entry-name">' + esc(med ? med.name : "(deleted medication)") +
+              (e.units === 2 ? '<span class="entry-x2">×2</span>' : '') +
               (e.note ? ' <span class="entry-note">&mdash; ' + esc(e.note) + '</span>' : '') +
             '</span>' +
             '<button type="button" class="del" data-action="delete" data-entry="' + esc(e.id) + '" ' +
@@ -595,20 +732,38 @@
           '</div>' +
           '<label for="name-' + esc(med.id) + '">Name</label>' +
           '<input type="text" id="name-' + esc(med.id) + '" value="' + esc(med.name) + '" ' +
-            'data-field="name" data-med="' + esc(med.id) + '" maxlength="60" placeholder="e.g. Vitamin D">' +
+            'data-field="name" data-med="' + esc(med.id) + '" maxlength="60" placeholder="e.g. Optalgin">' +
           '<div class="row">' +
             '<div>' +
-              '<label for="dose-' + esc(med.id) + '">Dose (optional)</label>' +
+              '<label for="dose-' + esc(med.id) + '">Dose per take</label>' +
               '<input type="text" id="dose-' + esc(med.id) + '" value="' + esc(med.dose) + '" ' +
-                'data-field="dose" data-med="' + esc(med.id) + '" maxlength="40" placeholder="e.g. 500 mg">' +
+                'data-field="dose" data-med="' + esc(med.id) + '" maxlength="40" placeholder="e.g. 40 drops">' +
             '</div>' +
             '<div>' +
-              '<label for="iv-' + esc(med.id) + '">Min hours between doses</label>' +
+              '<label for="sched-' + esc(med.id) + '">When (optional)</label>' +
+              '<input type="text" id="sched-' + esc(med.id) + '" value="' + esc(med.schedule) + '" ' +
+                'data-field="schedule" data-med="' + esc(med.id) + '" maxlength="24" placeholder="e.g. Before sleep">' +
+            '</div>' +
+          '</div>' +
+          '<div class="row">' +
+            '<div>' +
+              '<label for="iv-' + esc(med.id) + '">Min hours between</label>' +
               '<input type="number" id="iv-' + esc(med.id) + '" min="0" max="168" step="0.5" ' +
                 'value="' + (med.minIntervalHours == null ? "" : esc(med.minIntervalHours)) + '" ' +
                 'data-field="minIntervalHours" data-med="' + esc(med.id) + '" placeholder="optional">' +
             '</div>' +
+            '<div>' +
+              '<label for="max-' + esc(med.id) + '">Max doses per day</label>' +
+              '<input type="number" id="max-' + esc(med.id) + '" min="1" max="24" step="1" ' +
+                'value="' + (med.maxPerDay == null ? "" : esc(med.maxPerDay)) + '" ' +
+                'data-field="maxPerDay" data-med="' + esc(med.id) + '" placeholder="optional">' +
+            '</div>' +
           '</div>' +
+          '<label class="check">' +
+            '<input type="checkbox" data-field="allowDouble" data-med="' + esc(med.id) + '"' +
+              (med.allowDouble ? " checked" : "") + '>' +
+            '<span>Double dose allowed (adds a ×2 button, counts as 2 toward the daily max)</span>' +
+          '</label>' +
         '</div>';
     }).join("");
 
@@ -619,9 +774,10 @@
         '<div class="btn-row">' +
           '<button type="button" class="secondary" data-action="add-med">+ Add medication</button>' +
         '</div>' +
-        '<p class="hint">Changes save as you type. The spacing figure is your own reminder, ' +
-          'taken from your prescription &mdash; this app never suggests a dose or an interval, ' +
-          'and it will not stop you logging one.</p>' +
+        '<p class="hint">Changes save as you type. The spacing and daily figures are your own, ' +
+          'taken from your prescription &mdash; this app never suggests a dose, an interval or ' +
+          'a limit, and it will never stop you logging one. Passing a figure only raises a ' +
+          'confirm, so a real extra dose still gets recorded truthfully.</p>' +
       '</fieldset>' +
 
       '<fieldset>' +
@@ -673,13 +829,14 @@
   }
 
   function exportCsv() {
-    var rows = [["medication", "dose", "date", "time", "iso_timestamp", "note"]];
+    var rows = [["medication", "dose", "units", "date", "time", "iso_timestamp", "note"]];
     state.log.slice().sort(function (a, b) { return a.ts - b.ts; }).forEach(function (e) {
       var med = medById(e.medId);
       var d = new Date(e.ts);
       rows.push([
         med ? med.name : "(deleted)",
         med ? med.dose : "",
+        e.units,
         dayKey(e.ts),
         pad(d.getHours()) + ":" + pad(d.getMinutes()),
         d.toISOString(),
@@ -735,7 +892,8 @@
     if (!btn) return;
     var action = btn.getAttribute("data-action");
 
-    if (action === "take") { logNow(btn.getAttribute("data-med")); return; }
+    if (action === "take") { logNow(btn.getAttribute("data-med"), 1); return; }
+    if (action === "take-double") { logNow(btn.getAttribute("data-med"), 2); return; }
     if (action === "manual") { openManual(btn.getAttribute("data-med")); return; }
 
     if (action === "delete") {
@@ -756,7 +914,10 @@
         id: uid(),
         name: "Medication " + (state.meds.length + 1),
         dose: "",
+        schedule: "",
         minIntervalHours: null,
+        maxPerDay: null,
+        allowDouble: false,
         color: PALETTE[state.meds.length % PALETTE.length]
       });
       save();
@@ -795,29 +956,38 @@
     }
   });
 
-  // Settings fields save as you type.
-  document.getElementById("view-settings").addEventListener("input", function (ev) {
-    var el = ev.target;
+  // Settings fields save as you type. Only the other views are re-rendered,
+  // so the field being edited keeps its focus and caret.
+  function applyField(el) {
     var field = el.getAttribute && el.getAttribute("data-field");
-    if (!field) return;
+    if (!field) return false;
     var med = medById(el.getAttribute("data-med"));
-    if (!med) return;
+    if (!med) return false;
 
     if (field === "minIntervalHours") {
-      var n = parseFloat(el.value);
-      med.minIntervalHours = Number.isFinite(n) && n > 0 ? n : null;
+      med.minIntervalHours = posNum(parseFloat(el.value));
+    } else if (field === "maxPerDay") {
+      med.maxPerDay = posInt(parseFloat(el.value));
+    } else if (field === "allowDouble") {
+      med.allowDouble = !!el.checked;
     } else {
       med[field] = el.value;
     }
     save();
-    // Re-render only the other views, so the field being typed into keeps focus.
     renderToday();
     renderHistory();
+    return true;
+  }
+
+  document.getElementById("view-settings").addEventListener("input", function (ev) {
+    applyField(ev.target);
   });
 
-  // Blank name falls back to a placeholder rather than an unlabelled card.
   document.getElementById("view-settings").addEventListener("change", function (ev) {
     var el = ev.target;
+    if (el.type === "checkbox") { applyField(el); return; }
+
+    // A name left blank falls back to a placeholder rather than an unlabelled card.
     if (el.getAttribute && el.getAttribute("data-field") === "name" && !el.value.trim()) {
       var med = medById(el.getAttribute("data-med"));
       if (med) {
